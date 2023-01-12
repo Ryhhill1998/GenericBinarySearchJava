@@ -1,21 +1,31 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        int[] numbers = {1, 4, 6, 7, 8, 9, 11};
-        System.out.println(getIndexBinarySearch(5, numbers));
+        ArrayList<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(4);
+        numbers.add(6);
+        numbers.add(7);
+        numbers.add(8);
+        numbers.add(9);
+        numbers.add(11);
+        System.out.println(getIndexBinarySearch(6, numbers));
     }
 
-    private static int getIndexBinarySearch(int numberToFind, int[] numbers) {
+    private static int getIndexBinarySearch(int numberToFind, List<Integer> numbers) {
         int start = 0;
-        int end = numbers.length - 1;
+        int end = numbers.size() - 1;
         int foundIndex = -1;
 
         while (start <= end) {
             int midIndex = (start + end) / 2;
 
-            if (numbers[midIndex] == numberToFind) {
+            if (numbers.get(midIndex) == numberToFind) {
                 foundIndex = midIndex;
                 break;
-            } else if (numbers[midIndex] > numberToFind) {
+            } else if (numbers.get(midIndex) > numberToFind) {
                 end = midIndex - 1;
             } else {
                 start = midIndex + 1;
