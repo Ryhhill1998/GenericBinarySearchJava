@@ -1,54 +1,27 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Integer> numbers = new ArrayList<>();
-        numbers.add(9);
-        numbers.add(7);
-        numbers.add(4);
-        numbers.add(3);
-        numbers.add(2);
-        numbers.add(1);
-
-        printElements(numbers);
-        insertionSort(numbers);
-        printElements(numbers);
-
-        System.out.println();
-
-        ArrayList<String> words = new ArrayList<>();
-        words.add("amazon");
-        words.add("lettuce");
-        words.add("forest");
-        words.add("alpha");
-        words.add("child");
-        words.add("turkey");
-        words.add("sloped");
-
-        printElements(words);
-        insertionSort(words);
-        printElements(words);
+        int[] numbers = {1, 4, 6, 7, 8, 9, 11};
+        System.out.println(getIndexBinarySearch(5, numbers));
     }
 
-    private static <E extends Comparable<? super E>> void insertionSort(List<E> list) {
-        for (int i = 1; i < list.size(); i++) {
-            E value = list.get(i);
-            int j = i;
+    private static int getIndexBinarySearch(int numberToFind, int[] numbers) {
+        int start = 0;
+        int end = numbers.length - 1;
+        int foundIndex = -1;
 
-            while (j > 0 && value.compareTo(list.get(j - 1)) <= 0) {
-                list.set(j, list.get(j - 1));
-                j--;
+        while (start <= end) {
+            int midIndex = (start + end) / 2;
+
+            if (numbers[midIndex] == numberToFind) {
+                foundIndex = midIndex;
+                break;
+            } else if (numbers[midIndex] > numberToFind) {
+                end = midIndex - 1;
+            } else {
+                start = midIndex + 1;
             }
-
-            list.set(j, value);
         }
-    }
 
-    private static <E extends Comparable<? super E>> void printElements(List<E> list) {
-        for (E element : list) {
-            System.out.print(element + " ");
-        }
-        System.out.println();
+        return foundIndex;
     }
 }
