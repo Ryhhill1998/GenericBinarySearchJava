@@ -14,18 +14,19 @@ public class Main {
         System.out.println(getIndexBinarySearch(6, numbers));
     }
 
-    private static int getIndexBinarySearch(int numberToFind, List<Integer> numbers) {
+    private static <E extends Comparable<? super E>> int getIndexBinarySearch(E elementToFind, List<E> numbers) {
         int start = 0;
         int end = numbers.size() - 1;
         int foundIndex = -1;
 
         while (start <= end) {
             int midIndex = (start + end) / 2;
+            int comparison = numbers.get(midIndex).compareTo(elementToFind);
 
-            if (numbers.get(midIndex) == numberToFind) {
+            if (comparison == 0) {
                 foundIndex = midIndex;
                 break;
-            } else if (numbers.get(midIndex) > numberToFind) {
+            } else if (comparison > 0) {
                 end = midIndex - 1;
             } else {
                 start = midIndex + 1;
