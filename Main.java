@@ -12,6 +12,13 @@ public class Main {
         numbers.add(9);
         numbers.add(11);
         System.out.println(getIndexBinarySearch(6, numbers));
+        System.out.println();
+
+        ArrayList<Character> letters = new ArrayList<>();
+        for (char i = 'a'; i <= 'z'; i++) {
+            letters.add(i);
+        }
+        System.out.println(getIndexBinarySearch('p', letters));
     }
 
     private static <E extends Comparable<? super E>> int getIndexBinarySearch(E elementToFind, List<E> numbers) {
